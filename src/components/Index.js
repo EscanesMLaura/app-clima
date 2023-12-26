@@ -35,12 +35,12 @@ export default function Index() {
             message: "",
         });
         try {
-            if (!city.trim()) throw { message: "El campo ciudad es obligatorio" };
+            if (!city.trim()) throw new Error("El campo ciudad es obligatorio");
 
             const response = await fetch(`${API_WEATHER}${city}`)
             const data = await response.json();
 
-            if (data.error) throw { message: data.error.message };
+            if (data.error) throw new Error(data.error.message);
 
             setWeather({
                 city: data.location.name,
